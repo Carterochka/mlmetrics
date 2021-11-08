@@ -27,14 +27,14 @@ class Regressor(Metrics):
 
     def best_mse(self, show=True, savefolder=None):
         import numpy as np
-        max_el = np.amax(self.history.history['mse'])
-        max_el_ind = np.where(self.history.history['mse'] == max_el)
+        min_el = np.amax(self.history.history['mse'])
+        min_el_ind = np.where(self.history.history['mse'] == min_el)
 
         if show:
-            print('Best mse is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.')
+            print('Best mse is ' + str(min_el) + ' on epoch ' + str(*min_el_ind) + '.')
 
         if savefolder != None:
             with open(savefolder + '/summary.txt', 'a+') as file:
-                file.write('Best mse is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.\n')
+                file.write('Best mse is ' + str(min_el) + ' on epoch ' + str(*min_el_ind) + '.\n')
 
-        return (max_el, max_el_ind)
+        return (min_el, min_el_ind)

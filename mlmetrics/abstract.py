@@ -102,7 +102,7 @@ class Metrics(ABC):
 
         plt.plot(range(1, len(self.timehistory_callback.times) + 1), self.timehistory_callback.times)
         plt.xlabel('Epoch')
-        plt.ylabel('Training time per epoch')
+        plt.ylabel('Training time per epoch (s)')
         if savefolder != None:
             plt.savefig(savefolder + '/training_time_plot.png')
         if show:
@@ -115,10 +115,10 @@ class Metrics(ABC):
 
         if 'val_loss' in self.history.history.keys():
              plt.plot(range(1, len(self.history.history['val_loss']) + 1), self.history.history['val_loss'])
-             plt.legend(['Train', 'Test'], loc='upper left')
+             plt.legend(['Train', 'Test'])
 
         plt.xlabel('Epoch')
-        plt.ylabel('Precision per epoch')
+        plt.ylabel('Loss per epoch')
         if savefolder != None:
             plt.savefig(savefolder + '/loss_plot.png')
         if show:
@@ -127,17 +127,17 @@ class Metrics(ABC):
 
     def best_loss(self, show=True, savefolder=None):
         import numpy as np
-        max_el = np.amax(self.history.history['loss'])
-        max_el_ind = np.where(self.history.history['loss'] == max_el)
+        min_el = np.amin(self.history.history['loss'])
+        min_el_ind = np.where(self.history.history['loss'] == min_el)
 
         if show:
-            print('Best loss is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.')
+            print('Best loss is ' + str(min_el) + ' on epoch ' + str(*min_el_ind) + '.')
 
         if savefolder != None:
             with open(savefolder + '/summary.txt', 'a+') as file:
-                file.write('Best loss is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.\n')
+                file.write('Best loss is ' + str(min_el) + ' on epoch ' + str(*min_el_ind) + '.\n')
 
-        return (max_el, max_el_ind)
+        return (min_el, min_el_ind)
 
 
     def compile_model(self, keras_metrics=[], *args, **kwargs):

@@ -17,7 +17,7 @@ class Classifier(Metrics):
         
         if 'val_precision' in self.history.history.keys():
              plt.plot(range(1, len(self.history.history['val_precision']) + 1), self.history.history['val_precision'])
-             plt.legend(['Train', 'Test'], loc='upper left')
+             plt.legend(['Train', 'Test'])
 
         plt.xlabel('Epoch')
         plt.ylabel('Precision per epoch')
@@ -33,10 +33,10 @@ class Classifier(Metrics):
 
         if 'val_recall' in self.history.history.keys():
              plt.plot(range(1, len(self.history.history['val_recall']) + 1), self.history.history['val_recall'])
-             plt.legend(['Train', 'Test'], loc='upper left')
+             plt.legend(['Train', 'Test'])
 
         plt.xlabel('Epoch')
-        plt.ylabel('Precision per epoch')
+        plt.ylabel('Recall per epoch')
         if savefolder != None:
             plt.savefig(savefolder + '/recall_plot.png')
         if show:
@@ -49,11 +49,11 @@ class Classifier(Metrics):
         max_el_ind = np.where(self.history.history['recall'] == max_el)
 
         if show:
-            print('Best recall is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.')
+            print('Best recall is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.')
 
         if savefolder != None:
             with open(savefolder + '/summary.txt', 'a+') as file:
-                file.write('Best recall is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.\n')
+                file.write('Best recall is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.\n')
 
         return (max_el, max_el_ind)
 
@@ -64,11 +64,11 @@ class Classifier(Metrics):
         max_el_ind = np.where(self.history.history['precision'] == max_el)
 
         if show:
-            print('Best precision is ' + str(max_el) + ' on epochs ' + str(*max_el_ind) + '.')
+            print('Best precision is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.')
 
         if savefolder != None:
             with open(savefolder + '/summary.txt', 'a+') as file:
-                file.write('Best precision is ' + str(max_el) + ' on epochs ' + str(*max_el_ind) + '.\n')
+                file.write('Best precision is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.\n')
 
         return (max_el, max_el_ind)
 
@@ -79,10 +79,10 @@ class Classifier(Metrics):
 
         if 'val_accuracy' in self.history.history.keys():
              plt.plot(range(1, len(self.history.history['val_accuracy']) + 1), self.history.history['val_accuracy'])
-             plt.legend(['Train', 'Test'], loc='upper left')
+             plt.legend(['Train', 'Test'])
 
         plt.xlabel('Epoch')
-        plt.ylabel('Precision per epoch')
+        plt.ylabel('Accuracy per epoch')
         if savefolder != None:
             plt.savefig(savefolder + '/accuracy_plot.png')
         if show:
@@ -95,11 +95,11 @@ class Classifier(Metrics):
         max_el_ind = np.where(self.history.history['accuracy'] == max_el)
 
         if show:
-            print('Best accuracy is ' + str(max_el) + ' on epoch ' + str(*max_el_ind) + '.')
+            print('Best accuracy is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.')
 
         if savefolder != None:
             with open(savefolder + '/summary.txt', 'a+') as file:
-                file.write('Best accuracy is ' + str(max_el) + ' on epochs ' + str(*max_el_ind) + '.\n')
+                file.write('Best accuracy is ' + str(max_el) + ' on epoch(s) ' + str(*max_el_ind) + '.\n')
 
         return (max_el, max_el_ind)
 
