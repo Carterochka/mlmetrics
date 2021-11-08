@@ -1,6 +1,0 @@
-Average training time is 0.05050499439239502 s.
-Best precision is 0.9905555844306946 on epoch(s) [92].
-Best recall is 0.9905555844306946 on epoch(s) [92].
-Best accuracy is 0.9905555844306946 on epoch(s) [92].
-Best loss is 0.05042204633355141 on epoch [99].
-Total training time is 5.050499439239502 s.
